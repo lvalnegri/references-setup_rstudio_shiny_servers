@@ -1,0 +1,18 @@
+
+### network
+ 
+ - Virtual Machine 
+    - Settings > Network > Attached to: Bridge Adapter
+    - Run > login
+    - cd /etc/sysconfig/network-scripts
+    - vi ifc-enp0s3 
+      - check, change or add following lines:
+        BOOTPROTO=none
+        ONBOOT=yes 
+        IPADDR=192.168.x.yyy
+        NETMASK=255.255.255.0
+        GATEWAY=192.168.x.1
+        DNS1=8.8.8.8
+        DNS2=8.8.4.4
+    - restart the network interfaces: service network restart
+    - test: ping 8.8.8.8
