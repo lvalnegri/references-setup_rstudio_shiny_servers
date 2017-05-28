@@ -1,17 +1,17 @@
 ## Installing Ubuntu on a physical machine
 
-Installation
+### Installation
 
-Get a spare 2+ GB USB flash device / SD card
-Download an Ubuntu flavour ISO file. You can also directly buy a bootable USB stick.
-If you have a Windows OS, the easiest way is to download Pendrive Linux Universal USB Installer, run it and follow instructions. Be sure in step 1 to select Ubuntu Server Installer, usually the last choice in the Ubuntu 32/64 bit list.
-Once the writing process is done, it should take around 10 mins, put the USB drive into the computer you want to install Ubuntu on, and turn it on.
-If needed, change the BIOS settings accordingly to boot off the USB. You usually enter any BIOS menu pressing the DELete key while booting.
-Select Install Ubuntu Server
-Select the preferred language
-Choose the preferred location
-Choose a keyboard layout, or let the system detect it by you pressing a few specified keys
-The system will now detect hardware and load the corresponding additional driver.
+ - Get a spare 2+ GB USB flash device / SD card
+ - Download an Ubuntu flavour ISO file. You can also directly [buy](https://shop.canonical.com/product_info.php?products_id=1206) a bootable USB stick.
+ - If you have a Windows OS, the easiest way is to download [Rufus](https://rufus.akeo.ie/), run it and follow instructions. You can also have a look at some graphical instructions on [Canonical webiste](https://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows). 
+ - Once the writing process is done, it should take around 10 mins, put the USB drive into the computer you want to install Ubuntu on, and turn it on.  
+  If needed, change the BIOS settings accordingly to boot off the USB. You usually enter any BIOS menu pressing the DELete key while booting.
+ - Select Install Ubuntu Server
+ - Select the preferred language
+ - Choose the preferred location
+ - Choose a keyboard layout, or let the system detect it by you pressing a few specified keys
+ - The system will now detect hardware and load the corresponding additional driver.
 With multiple network interfaces installed, the installer is now going to ask which one is to be consider primary. In case the selection is a wireless adapter which is going to be used on a protected network, the installer asks for the corresponding ESSID and password before proceeding.
 Enter the hostname that identifies your system to the network
 When asked about a proxy, you may leave the line empty.
