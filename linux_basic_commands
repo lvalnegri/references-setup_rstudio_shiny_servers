@@ -1,0 +1,4 @@
+## Users
+
+- Create a New User: `adduser username`
+- Add new user to the *sudo* group (to run commands with superuser privileges): `usermod -aG sudo username`
