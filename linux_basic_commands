@@ -4,10 +4,40 @@
 - Add new user to the *sudo* group (to run commands with superuser privileges): `usermod -aG sudo username`
 
 
-#### Monitor accesses
+### Monitor accesses
 
  - List all the previous attempted login to the system: `sudo less /var/log/auth.log`
  - List the most recent successful login: `last`
  - View the last time each user on the system logged in: `lastlog`
 
+### Mounting hard disks
 
+ - get info on the ids of the attached devices and corresponding partitions: sudo fdisk -l
+ - prepare a new directory as mountpoint: sudo mkdir /mnt/newdisk
+ - mount the disk: sudo mount -t filesys partname mountpoint
+   If filesys is Linux, there's no need for the t option
+ - to have devices automatically mpunted st boot, need to edit /etc/fstab:
+   - get id of mounted partitions: `blkid`
+   - sudo nano /etc/fstab
+   - add a line for every mountpoint with following information separated by space:
+       <file system> <mount point> <type> <options> <dump> <pass>
+ - to unmount any device: sudo umount mountpoint
+  
+#### Current status
+  ```
+  sudo mount /dev/sdb1 -t ntfs-3g /home/datamaps/storage/music/
+  sudo mount /dev/sdc2 -t ntfs-3g /home/datamaps/storage/media/
+  sudo mount /dev/sdd1 /home/datamaps/storage/backup/
+  ```
+  after blkid these are the results of the new mounted partitions:
+  ```
+  /dev/sdb1: LABEL="SEAGATE OLD 2TB" UUID="FC006872006835B4" TYPE="ntfs" PARTUUID="2d538674-01"
+  /dev/sdc2: LABEL="Repository" UUID="9E904ABF904A9E21" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="e9789d93-9c15-495a-a7c4-d2f1fa5afc0f"
+  /dev/sdd1: UUID="c7cb18c7-41c1-4c2f-99fe-74cc744e164b" TYPE="ext4" PARTUUID="000b3eab-01"
+  ```
+  so we can enter in /etc/fstab the following information for boot time:
+  ```
+  ```
+  
+ 
+ 
