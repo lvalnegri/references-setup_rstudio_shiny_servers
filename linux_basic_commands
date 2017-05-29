@@ -37,6 +37,9 @@
   ```
   so we can enter in /etc/fstab the following information for boot time:
   ```
+  UUID=FC006872006835B4 /home/datamaps/storage/music/ ntfs-3g defaults 0 0 
+  UUID=9E904ABF904A9E21 /home/datamaps/storage/media/ ntfs-3g defaults 0 0
+  UUID=c7cb18c7-41c1-4c2f-99fe-74cc744e164b /home/datamaps/storage/backup/ ext4 defaults 0 0
   ```
   
  
