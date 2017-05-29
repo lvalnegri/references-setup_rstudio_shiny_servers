@@ -84,65 +84,16 @@ where x is linked to the local network, while yyy is the requested fixed interna
 
  - Restart the service afterwards:  `sudo service ssh restart`
 
+### Enable UFW Firewall
 
-#### Install a firewall (*fail2ban*)
-
-First, go through the actual installation: `sudo apt-get install fail2ban`
-
-Then make a copy of the default settings: `sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`
-
-Personalise the defaults open the configuration file for editing: `sudo nano /etc/fail2ban/jail.local`:
-
-write down personal IP addresses into the ignoreip line, separating each address with a space
-
-add the new SSH port if changed: 
-
-Stop & restart the service: `sudo service fail2ban stop && sudo service fail2ban start`
-
-Check if the new rules have been appled: `sudo iptables -S`
-
-
-#### Install an antivirus (ClamAV) 
-
-First, go through the actual installation: `sudo apt-get install clamav clamav-daemon -y`
-
-Run the initial configuration process: `sudo dpkg-reconfigure clamav-base`
-
-Grab the most recent virus definitions: `sudo freshclam`
-
-Restart the service: `sudo /etc/init.d/clamav-daemon start`
-
-Check files in a specified directory: sudo clamscan -r /path/to/check
-
-Scan and remove virus files: sudo clamscan --infected --remove --recursive /path/to/clean
-
-Check clamd status: sudo /etc/init.d/clamav-daemon status
-
-Verify ClamAV version number: sudo clamdscan -V
-
-To routinely scan certain directories, run the following script as a cronjob:
-
-Open the editor as `su` for a new file: `sudo nano /path/to/script.sh`
-
-Write down the following:
-```
-#!/bin/sh
-rm -R /var/log/nightly-clamav-scan.log
-touch /var/log/nightly-clamav-scan.log
-clamdscan /home/ /etc/ /var/www/ --infected --multiscan --fdpass --log=/var/log/nightly-clamav-scan.log
-```
-Make the script executable: `chmod +x /path/to/script.sh`
-
-Open up crontab editor: `sudo crontab -e` 
-and add the following line to schedule it to run (for example) at midnight each night: `0 0 * * * /bin/sh /path/to/script.sh`
-
-
-#### Main commands worth remembering for monitoring accesses
-
- - List all the previous attempted login to the system: `sudo less /var/log/auth.log`
- - List the most recent successful login: `last`
- - View the last time each user on the system logged in: `lastlog`
-
+ - Update the SSH profile in ufw to allow connections BEFORE enabling the service and the new port xxx:
+    - `sudo ufw allow OpenSSH`
+    - `sudo ufw allow xxx`
+ - enable the firewall: `sudo ufw enable`
+ - allow all of the other connections that the server needs to respond to: HTTP (80), HTTPS (443), FTP (21), 
+ - check the firewall: `sudo ufw status`
+ - read [this](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04) guide
+ 
 
 ### Webmin
 
@@ -150,21 +101,35 @@ and add the following line to schedule it to run (for example) at midnight each 
 
  - Open the list for editing: sudo nano /etc/apt/sources.list
  - Add the following lines at the end of the file: 
+   ```
    deb http://download.webmin.com/download/repository sarge contrib
    deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
+   ```
  - Install the GPG key to access the repository: 
+   ```
    wget http://www.webmin.com/jcameron-key.asc
    sudo apt-key add jcameron-key.asc
- - Update packages list: sudo apt-get update
- - Install webmin: sudo apt-get install webmin
+   ```
+ - Update packages list: `sudo apt-get update`
+ - Install webmin: `sudo apt-get install webmin`
 
-#### Secure the 
+#### Secure the access
 
+ - Webmin start listening to port 10000, and that's the port that should initially be allowed with the firewall: sudo ufw allow 10000
  - Navigate to the URL https://url:10000/, then enter the username and password to log in to webmin console.
  - Enable SSL Access: Webmin -> Webmin Configuration -> SSL Encryption
+ - To change port, we first have Webmin to listen on IPv6:
+    - To find out if Webmin is listening on IPv6 type: netstat -anp | grep 10000
+    - Ensure the perl IPv6 Socket module is installed: apt-get install libsocket6-perl
+    - check if IPv6 is enabled in Webmin: grep "ipv6" /etc/webmin/miniserv.conf
+    - If you don't see any response, you need to configure webmin to listen on IPv6: echo "ipv6=1" >> /etc/webmin/miniserv.conf
+    - restart Webmin: service webmin restart
  - Change Default Port to some random number xxxxx: Webmin -> Webmin Configuration -> Ports and Addresses
  - Allow access via firewall, if you want to access the Webmin console from a remote system: sudo ufw allow xxxxx
  - Remove access to the standard port 10000: sudo ufw deny 10000
+ 
+#### Request certificate
+
 
 #### Add Two Factor Authentication (2FA)
 
@@ -195,16 +160,17 @@ When the installation finish, run `sudo mysql_secure_installation`, then:
 #### Adding user(s)
 
  - Open the terminal and login as root: `mysql -u root -p`
- - Create the user: `CREATE USER 'myuser'@'localhost' IDENTIFIED BY 'mypass';`
+ - Create the user: 
+    - `CREATE USER 'username'@'localhost' IDENTIFIED BY 'pwd';`
  - Grant privileges: 
-   - all privileges: `GRANT ALL ON *.* TO 'myuser'@'localhost';`
+   - all privileges: `GRANT ALL ON *.* TO 'username'@'localhost';`
    - admin privileges: 
    - common user: 
  - Update the server: `FLUSH PRIVILEGES;`
- - However, for a remote user to connect even with the correct privileges, the previous commands have to be repeated with the correct IP instead of localhost, inserting '%' everywhere as a  Shortly, to let a user connect from anywhere the correct commands are the following:
+ - However, for a remote user to connect even with the correct privileges, the previous commands have to be repeated with the correct IP address instead of localhost, or insert '%' meaning *everywhere*. Shortly, to let a user connect from anywhere the correct commands are the following:
 ```
-CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypass';
-GRANT ALL ON *.* TO 'myuser'@'%';
+CREATE USER 'username'@'%' IDENTIFIED BY 'pwd';
+GRANT ALL ON *.* TO 'username'@'%';
 ```
 
 #### Configure and tweaking the server
