@@ -1,4 +1,13 @@
-## Users
+### Users
 
 - Create a New User: `adduser username`
 - Add new user to the *sudo* group (to run commands with superuser privileges): `usermod -aG sudo username`
+
+
+#### Monitor accesses
+
+ - List all the previous attempted login to the system: `sudo less /var/log/auth.log`
+ - List the most recent successful login: `last`
+ - View the last time each user on the system logged in: `lastlog`
+
+
