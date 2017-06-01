@@ -2,15 +2,19 @@
 # # #  ===>  C  R  A  N  <===  # # # 
 # # CLASSICS
 pkg.lst <- c(
-    'Amelia', 'broom', 'car', 'caret', 'corrplot', 'data.table', 'devtools', 'dplyr', 'forecast', 'foreach', 'funModeling', 'ggvis', 'glmnet', 'gmodels', 'googleVis', 'gridExtra',
+    'Amelia', 'broom', 'car', 'caret', 'classInt', 'corrplot', 'data.table', 'devtools', 'dplyr', 'forecast', 'foreach', 'funModeling', 'ggvis', 'glmnet', 'gmodels', 'googleVis', 'gridExtra',
     'Hmisc', 'httr', 'janitor', 'jsonlite', 'listviewer', 'lme4', 'lubridate', 'mgcv', 'mlr', 'multcomp', 'nlme', 'parallel', 'plyr', 'psych', 'quantmod', 
-    'randomForest', 'RColorBrewer', 'Rcpp', 'readr', 'readxl', 'reshape2', 'rio', 'RMySQL', 'rvest', 'scales', 'simpletable', 'sjplot', 'sjmisc', 'sparklyr', 'stringr', 'survival',
-    'tidyr', 'validate', 'vcd', 'viridis', 'XML', 'xts', 'xtable', 'zoo'
+    'randomForest', 'RColorBrewer', 'Rcpp', 'readr', 'readxl', 'reshape2', 'rio', 'RMySQL', 'rvest', 'scales', 'simpletable', 'sjPlot', 'sjmisc', 'sparklyr', 'stringr', 'survival',
+    'tidyr', 'validate', 'vcd', 'viridis', 'xml2', 'xts', 'xtable', 'zoo'
 )
 install.packages(pkg.lst, dependencies = TRUE)
 
-# # required for plotting MAPS and SPATIAL ANALYSIS
-pkg.lst <- c('ggmap', 'maps', 'maptools', 'sp')
+# # required for reading SPATIAL OBJECTS, plotting MAPS and SPATIAL ANALYSIS
+pkg.lst <- c(
+    'cartography', 'cshapes', 'fields', 'gdistance', 'geojsonio', 'geosphere', 'ggmap', 'GISTools', 
+    'mapmisc', 'maps', 'maptools', 'mapview', 
+    'quickmapr', 'raster', 'rgdal', 'rgeos', 'RgoogleMaps', 'rworldmap', 'rworldxtra', 'sf', 'sp', 'tigris', 'tmap', 'tmaptools'
+)
 install.packages(pkg.lst, dependencies = TRUE)
 
 # # required for plotting NETWORKS
