@@ -2,15 +2,19 @@
 # # #  ===>  C  R  A  N  <===  # # # 
 # # CLASSICS
 pkg.lst <- c(
-    'Amelia', 'broom', 'car', 'caret', 'classInt', 'corrplot', 'colourpicker', 'data.table', 'devtools', 'dplyr', 
+    'Amelia', 'car', 'caret', 'classInt', 'corrplot', 'colourpicker', 'data.table', 'devtools', 'diffobj', 
     'forecast', 'foreach', 'funModeling', 'ggvis', 'glmnet', 'gmodels', 'googleVis', 'gridExtra',
-    'Hmisc', 'httr', 'janitor', 'jsonlite', 'listviewer', 'lme4', 'lubridate', 'metafor', 'mgcv', 'mlr', 'multcomp', 
-    'nlme', 'parallel', 'plyr', 'psych', 'quantmod', 
-    'randomForest', 'RColorBrewer', 'Rcpp', 'readr', 'readxl', 'reshape2', 'rio', 'RMySQL', 'rvest', 
-    'scales', 'simpletable', 'sjPlot', 'sjmisc', 'sparklyr', 'stringr', 'survival',
-    'tidyr', 'validate', 'vcd', 'viridis', 'xml2', 'xts', 'xtable', 'zoo'
+    'Hmisc', 'httr', 'janitor', 'listviewer', 'lme4', 'metafor', 'mgcv', 'mlr', 'modelr', 'multcomp', 
+    'nlme', 'parallel', 'plyr', 'psych',
+    'randomForest', 'RColorBrewer', 'Rcpp', 'reshape2', 'rio', 'RMySQL', 
+    'scales', 'simpletable', 'sjPlot', 'sjmisc', 'sparklyr', 'survival',
+    'tidyquant', 'tidyverse', 'validate', 'vcd', 'viridis', 'xtable'
 )
 install.packages(pkg.lst, dependencies = TRUE)
+# 1) Note that "tidyverse" include: 
+#     - core: dplyr, ggplot2, purrr, readr, tibble, tidyr (these are always loaded when loading the tidyverse library) 
+#     - plus: broom, feather, forcats, haven, hms, httr, jsonlite, lubridate, magrittr, modelr, readxl, rvest, stringr, xml2
+# 2) Note that "tidyquant" include: PerformanceAnalytics, quantmod, TTR, xts, zoo 
 
 # # required for reading SPATIAL OBJECTS, plotting MAPS and SPATIAL ANALYSIS
 pkg.lst <- c(
@@ -49,7 +53,7 @@ install.packages(pkg.lst, dependencies = TRUE)
 
 # # SHINY, RMARKDOWN, INTERACTIVE REPORTING
 pkg.lst <- c(
-    'bookdown', 'bsplus', 'commonmark', 'flexdashboard', 'htmlTable', 'prettydoc',
+    'bookdown', 'bsplus', 'commonmark', 'flexdashboard', 'htmlTable', 'knitr', 'prettydoc',
     'revealjs', 'rmarkdown', 'rmdformats', 'rmdshower', 'rsconnect', 
     'shiny', 'shinycssloaders', 'shinydashboard', 'shinyDND', 'shinyjqui', 'shinyjs', 'shinythemes', 'shinyWidgets'
     'tufte', 'tufterhandout'
