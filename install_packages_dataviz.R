@@ -2,9 +2,12 @@
 # # #  ===>  C  R  A  N  <===  # # # 
 # # CLASSICS
 pkg.lst <- c(
-    'Amelia', 'broom', 'car', 'caret', 'classInt', 'corrplot', 'data.table', 'devtools', 'dplyr', 'forecast', 'foreach', 'funModeling', 'ggvis', 'glmnet', 'gmodels', 'googleVis', 'gridExtra',
-    'Hmisc', 'httr', 'janitor', 'jsonlite', 'listviewer', 'lme4', 'lubridate', 'mgcv', 'mlr', 'multcomp', 'nlme', 'parallel', 'plyr', 'psych', 'quantmod', 
-    'randomForest', 'RColorBrewer', 'Rcpp', 'readr', 'readxl', 'reshape2', 'rio', 'RMySQL', 'rvest', 'scales', 'simpletable', 'sjPlot', 'sjmisc', 'sparklyr', 'stringr', 'survival',
+    'Amelia', 'broom', 'car', 'caret', 'classInt', 'corrplot', 'colourpicker', 'data.table', 'devtools', 'dplyr', 
+    'forecast', 'foreach', 'funModeling', 'ggvis', 'glmnet', 'gmodels', 'googleVis', 'gridExtra',
+    'Hmisc', 'httr', 'janitor', 'jsonlite', 'listviewer', 'lme4', 'lubridate', 'metafor', 'mgcv', 'mlr', 'multcomp', 
+    'nlme', 'parallel', 'plyr', 'psych', 'quantmod', 
+    'randomForest', 'RColorBrewer', 'Rcpp', 'readr', 'readxl', 'reshape2', 'rio', 'RMySQL', 'rvest', 
+    'scales', 'simpletable', 'sjPlot', 'sjmisc', 'sparklyr', 'stringr', 'survival',
     'tidyr', 'validate', 'vcd', 'viridis', 'xml2', 'xts', 'xtable', 'zoo'
 )
 install.packages(pkg.lst, dependencies = TRUE)
@@ -22,10 +25,9 @@ pkg.lst <- c('igraph', 'network', 'networkDynamic', 'sna')
 install.packages(pkg.lst, dependencies = TRUE)
 
 # # GGPLOT EXTENSIONS: http://www.ggplot2-exts.org/gallery/, https://www.ggplot2-exts.org/ggiraph.html, https://github.com/ggplot2-exts/ggplot2-exts.github.io
-pkg.lst <- c(
-    'ggplot2',
-    'geomnet', 'GGally', 'ggalt', 'ggExtra', 'ggfortify', 'ggiraph', 'ggnetwork', 'ggpmisc', 'ggrepel', 'ggtern', 'ggthemes', 
-    'waffle'
+pkg.lst <- c('ggplot2',
+    'geomnet', 'GGally', 'ggalt', 'ggedit', 'ggExtra', 'ggfortify', 'ggforce', 'ggiraph', 'ggnetwork', 'ggpmisc', 'ggQC',
+    'ggraph', 'ggrepel', 'ggtern', 'ggthemes', 'waffle'
 )
 install.packages(pkg.lst, dependencies = TRUE)
 # geomnet:      , https://github.com/sctyner/geomnet
@@ -45,9 +47,12 @@ install.packages(pkg.lst, dependencies = TRUE)
 # ggthemes:     install_github('jrnold/ggthemes'), https://github.com/jrnold/ggthemes
 # waffle:       , https://github.com/hrbrmstr/waffle
 
-# # SHINY, RMARKDOWN
+# # SHINY, RMARKDOWN, INTERACTIVE REPORTING
 pkg.lst <- c(
-    'flexdashboard', 'rmarkdown', 'shiny', 'shinydashboard', 'shinyjs', 'shinythemes'
+    'bookdown', 'bsplus', 'commonmark', 'flexdashboard', 'htmlTable', 'prettydoc',
+    'revealjs', 'rmarkdown', 'rmdformats', 'rmdshower', 'rsconnect', 
+    'shiny', 'shinycssloaders', 'shinydashboard', 'shinyDND', 'shinyjqui', 'shinyjs', 'shinythemes', 'shinyWidgets'
+    'tufte', 'tufterhandout'
 )
 install.packages(pkg.lst, dependencies = TRUE)
 # install_github('rstudio/rmarkdown')                    # http://rmarkdown.rstudio.com/
